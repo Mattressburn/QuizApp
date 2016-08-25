@@ -63,10 +63,14 @@ $(document).ready(function() {
             $(".feedback-message").text("Fuck yeah. Woot.");
         }
         else {
+            //question incorrect
             console.log("ya dun fucked up");
             $("#Feedback").show();
             $("#Questions").hide();
-            $(".feedback-message").text("Psh. Dummy.");
+            //If it's incorrect, they should be shown the correct answer.
+            $(".feedback-message").text("Psh. Dummy. The correct answer is: "
+                + question[questionKey].choices[question[questionKey].correctAnswer]);
+
         }
     });
     
