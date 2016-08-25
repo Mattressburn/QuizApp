@@ -71,20 +71,36 @@ $(document).ready(function() {
     });
     
     $("#next-question").click(function() {
+        //check if the game is over
+        if(questionKey == 9) {
+            $("#Final-Tally").show();
+            $("#Feedback").hide();
+            $("#Questions").hide();
+            $(".hide-this").hide();
+            return;
+        }
         $("#Feedback").hide();
         $("#Questions").show();
         questionKey += 1;
         fillInInfo(questionKey);
         totalQuestionCounter += 1;
         $("#questionCounter").text(totalQuestionCounter);
+        $("input[type='radio']").prop('checked', false);
     });
 
-    //check if the game is over
-    // if(question[questionKey] == 9) {
-    //     $("#Final-Tally").show();
-    //     $("#Feedback").hide();
-    //     $("#Questions").hide();
-    // }
+    $("#restart").click(function() {
+        $("#Final-Tally").hide();
+        $("#Feedback").hide();
+        $("#Questions").show();
+        $(".hide-this").show();
+        questionKey = 0;
+        fillInInfo(questionKey);
+        counter = 0;
+        totalQuestionCounter = 1;
+        $("#questionCounter").text(totalQuestionCounter);
+        $(".scoreCounter").text(counter);
+        $("input[type='radio']").prop('checked', false);
+    });
 });
 
 function fillInInfo(questionKey) {
